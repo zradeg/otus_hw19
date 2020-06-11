@@ -132,6 +132,7 @@ Vagrant.configure("2") do |config|
             SHELL
 		when "office1Router"
 		  box.vm.provision "shell", run: "always", inline: <<-SHELL
+		    echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0
             echo net.ipv4.conf.all.forwarding=1 >> /etc/sysctl.conf
             echo net.ipv4.ip_forward = 1 >> /etc/sysctl.conf
 			/sbin/sysctl -p /etc/sysctl.conf
